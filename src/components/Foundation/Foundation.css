@@ -1,0 +1,53 @@
+.foundation {
+  background: linear-gradient(
+    180deg,
+    var(--page-bg) 0%,
+    #e2e8ec 40%,
+    #cbe3fb 76%,
+    var(--palette-sky) 100%
+  );
+  padding: clamp(70px, 9vw, 132px) var(--section-x-pad) clamp(72px, 9vw, 128px);
+}
+
+.foundation-head {
+  margin: 0 auto;
+  color: var(--ink);
+  /* Geist Medium, tight tracking (Figma). Size is in vw so the whole block
+     scales as one unit — the line breaks are locked by .fh-line below, so the
+     layout stays identical at any zoom / resolution. */
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(26px, 4.6vw, 84px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+/* Each line is its own non-wrapping row → the grouping never re-flows. */
+.fh-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.inline-img {
+  display: inline-block;
+  width: auto;
+  height: 0.78em;
+  margin: 0 0.08em;
+  border-radius: 0.14em;
+  object-fit: cover;
+  vertical-align: middle;
+  transform: translateY(-0.04em);
+}
+
+@media (max-width: 560px) {
+  .foundation {
+    padding-block: 58px 64px;
+  }
+
+  .foundation-head {
+    /* Smaller so the locked non-wrapping lines still fit narrow phones. */
+    font-size: clamp(19px, 7.2vw, 32px);
+    letter-spacing: -0.03em;
+  }
+}

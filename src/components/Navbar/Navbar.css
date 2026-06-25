@@ -1,0 +1,131 @@
+/* Sticky floating dock — fixed at the bottom-centre of the viewport.
+   Collapsed = logo + dot. Expands on hover / focus / toggle. */
+.navdock {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px;
+  border-radius: 16px;
+  background: var(--palette-navy);
+  box-shadow: 0 18px 44px rgba(7, 29, 50, 0.36);
+}
+
+/* Lime logo square (the "hi" mark) */
+.nav-logo {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: var(--palette-spark);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+.nav-logo img {
+  width: 23px;
+  height: 23px;
+}
+.nav-logo:hover {
+  transform: translateY(-1px);
+}
+.nav-logo.is-active {
+  box-shadow: 0 0 0 2px rgba(240, 254, 128, 0.45);
+}
+
+/* Collapsible items — animate to the actual content width via grid 0fr→1fr
+   so open and close are symmetric and equally smooth ("lazy"). */
+.nav-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  opacity: 1;
+  transition: grid-template-columns 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.5s ease;
+}
+.nav-items-inner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+}
+.nav-sep {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 26px;
+  margin: 0 2px;
+  background: rgba(234, 234, 234, 0.18);
+}
+
+/* Section items — icon only, label reveals on item hover / when active */
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  height: 46px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: rgba(234, 234, 234, 0.78);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.28s ease, color 0.28s ease;
+}
+.nav-item svg {
+  flex: 0 0 auto;
+  width: 21px;
+  height: 21px;
+}
+.nav-label {
+  max-width: 0;
+  margin-left: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  transition: max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease, margin-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-item:hover {
+  background: rgba(234, 234, 234, 0.1);
+  color: var(--palette-spark);
+}
+.nav-item:hover .nav-label,
+.nav-item:focus-visible .nav-label {
+  max-width: 160px;
+  margin-left: 8px;
+  opacity: 1;
+}
+.nav-item.is-active {
+  background: var(--palette-cream);
+  color: var(--palette-navy);
+}
+
+/* Collapsed-state dot hint — a small square in its own cell; it collapses
+   away as the items expand (no toggle button). */
+.nav-hint {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .navdock {
+    bottom: 14px;
+    gap: 3px;
+    padding: 5px;
+  }
+  .nav-logo,
+  .nav-item,
+  .nav-hint {
+    height: 42px;
+  }
+}
