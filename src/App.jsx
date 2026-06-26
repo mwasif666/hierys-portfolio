@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
 import Navbar from './components/Navbar/Navbar'
 import Foundation from './components/Foundation/Foundation'
 import Portfolio from './components/Portfolio/Portfolio'
@@ -7,14 +9,112 @@ import Trusted from './components/Trusted/Trusted'
 import OneTeam from './components/OneTeam/OneTeam'
 import FeelsLike from './components/FeelsLike/FeelsLike'
 import Footer from './components/Footer/Footer'
+import ImageWithSkeleton from './components/ImageWithSkeleton/ImageWithSkeleton'
 import './App.css'
 
 const featuredProjectImage =
   'https://res.cloudinary.com/djyb4mzzk/image/upload/v1778845884/14_1_efw5gd.png'
 
+function CountUpStat({ value, suffix = '+', duration = 1400 }) {
+  const ref = useRef(null)
+  const hasRunRef = useRef(false)
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node || hasRunRef.current) return
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      setCount(value)
+      hasRunRef.current = true
+      return
+    }
+
+    let rafId = 0
+    const animate = () => {
+      const start = performance.now()
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+        setCount(Math.round(eased * value))
+
+        if (progress < 1) {
+          rafId = requestAnimationFrame(tick)
+        }
+      }
+
+      rafId = requestAnimationFrame(tick)
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        hasRunRef.current = true
+        animate()
+        observer.disconnect()
+      },
+      { threshold: 0.35 },
+    )
+
+    observer.observe(node)
+
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(rafId)
+    }
+  }, [duration, value])
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  )
+}
+
+function SiteLoader({ isReady }) {
+  return (
+    <div className={`site-loader ${isReady ? 'site-loader--hidden' : ''}`} aria-hidden={isReady}>
+      <div className="site-loader__panel">
+        <span className="site-loader__brand">Hierys</span>
+        <CircularProgress
+          size={34}
+          thickness={4}
+          sx={{ color: 'var(--palette-navy)' }}
+        />
+      </div>
+    </div>
+  )
+}
+
 function App() {
+  const [siteReady, setSiteReady] = useState(false)
+
+  useEffect(() => {
+    const startedAt = performance.now()
+    let timeoutId = 0
+
+    const finishLoading = () => {
+      const remainingDelay = Math.max(0, 700 - (performance.now() - startedAt))
+      timeoutId = window.setTimeout(() => setSiteReady(true), remainingDelay)
+    }
+
+    if (document.readyState === 'complete') {
+      finishLoading()
+    } else {
+      window.addEventListener('load', finishLoading, { once: true })
+    }
+
+    return () => {
+      window.removeEventListener('load', finishLoading)
+      window.clearTimeout(timeoutId)
+    }
+  }, [])
+
   return (
     <main className="site-shell">
+      <SiteLoader isReady={siteReady} />
       <section id="home" className="page">
         <div className="banner-grid">
           {/* ── Left lime card ── */}
@@ -42,7 +142,9 @@ function App() {
             <p className="stat-copy">
               Brands built with consistent identity and creative direction.
             </p>
-            <span className="stat-figure italic-accent">80+</span>
+            <span className="stat-figure italic-accent">
+              <CountUpStat value={80} />
+            </span>
           </article>
 
           {/* ── Get in touch card ── */}
@@ -55,7 +157,7 @@ function App() {
           {/* ── Product / featured project card ── */}
           <article className="card product">
             <div className="product-art" role="img" aria-label="Featured project">
-              <img src={featuredProjectImage} alt="" />
+              <ImageWithSkeleton src={featuredProjectImage} alt="" loading="eager" />
             </div>
           </article>
 
@@ -64,7 +166,9 @@ function App() {
             <p className="stat-copy">
               Projects delivered across brand, website, content, and growth.
             </p>
-            <span className="stat-figure italic-accent">500+</span>
+            <span className="stat-figure italic-accent">
+              <CountUpStat value={500} />
+            </span>
           </article>
         </div>
       </section>

@@ -40,12 +40,62 @@
   }
 }
 @media (max-width: 760px) {
-  .feels-stage {
-    --bc-scale: 0.56;
+  .feels-head {
+    font-size: clamp(25px, 6.4vw, 34px);
+    line-height: 1.06;
+    letter-spacing: 0;
   }
-}
-@media (max-width: 480px) {
+
   .feels-stage {
-    --bc-scale: 0.4;
+    --bc-scale: 1;
+    height: auto;
+    display: block;
+    padding-inline: 18px;
+  }
+
+  .feels-stage > div {
+    width: 100% !important;
+    height: auto !important;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    transform: none !important;
+  }
+
+  .feels-stage .bc-card {
+    position: relative !important;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 0.72 / 1;
+    border-radius: 14px;
+    transform: none !important;
+    box-shadow: 0 10px 24px rgba(7, 29, 50, 0.16);
+  }
+
+  .feels-stage .bc-card:last-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 1.45 / 1;
+  }
+
+  .feels-stage .bc-card--img {
+    border-width: 3px;
+  }
+
+  .feels-stage .bc-stat {
+    padding: 16px 14px 14px;
+  }
+
+  .feels-stage .bc-value {
+    font-size: clamp(28px, 8vw, 38px);
+    letter-spacing: 0;
+  }
+
+  .feels-stage .bc-label {
+    font-size: 10px;
+  }
+
+  .feels-stage .bc-foot {
+    font-size: 10px;
+    line-height: 1.25;
   }
 }

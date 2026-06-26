@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
+import ImageWithSkeleton from '../ImageWithSkeleton/ImageWithSkeleton'
 import './BounceCards.css'
 
 /* Adapted from React Bits "BounceCards" — extended to render mixed content
@@ -103,7 +104,7 @@ export default function BounceCards({
           onMouseLeave={resetSiblings}
         >
           {card.kind === 'image' ? (
-            <img className="bc-image" src={card.src} alt="" />
+            <ImageWithSkeleton className="bc-image" src={card.src} alt="" />
           ) : (
             <div className={`bc-stat bc-stat--${card.theme}`}>
               <div className="bc-stat-top">

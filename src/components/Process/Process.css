@@ -145,6 +145,7 @@
   }
   .proc-heading {
     margin: 40px 0 32px;
+    padding-inline: 22px;
   }
 }
 @media (max-width: 460px) {

@@ -1,3 +1,4 @@
+import ImageWithSkeleton from '../ImageWithSkeleton/ImageWithSkeleton'
 import './Portfolio.css'
 
 const base = 'https://res.cloudinary.com/djyb4mzzk/image/upload'
@@ -38,7 +39,7 @@ export default function Portfolio() {
                 key={tile.src}
                 style={{ flexGrow: tile.r, aspectRatio: tile.r }}
               >
-                <img src={tile.src} alt={tile.alt} />
+                <ImageWithSkeleton src={tile.src} alt={tile.alt} />
               </figure>
             ))}
           </div>

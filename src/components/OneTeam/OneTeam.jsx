@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useMagneticCards } from '../../useMagneticCards'
+import ImageWithSkeleton from '../ImageWithSkeleton/ImageWithSkeleton'
 import './OneTeam.css'
 
 const base = 'https://res.cloudinary.com/djyb4mzzk/image/upload'
@@ -42,7 +43,7 @@ export default function OneTeam() {
               <h3 className="team-title">{card.title}</h3>
               <p className="team-desc">{card.desc}</p>
               <div className="team-img">
-                <img src={card.img} alt={card.title} loading="lazy" />
+                <ImageWithSkeleton src={card.img} alt={card.title} />
               </div>
             </article>
           ))}

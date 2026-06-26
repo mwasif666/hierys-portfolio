@@ -1,0 +1,35 @@
+.image-skeleton-shell {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(7, 29, 50, 0.05);
+}
+
+.image-skeleton-shell > img {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.image-skeleton-shell.is-loaded > img {
+  opacity: 1;
+}
+
+.image-skeleton {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
+  background-color: rgba(7, 29, 50, 0.08) !important;
+}
+
+.image-skeleton::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.42),
+    transparent
+  ) !important;
+}

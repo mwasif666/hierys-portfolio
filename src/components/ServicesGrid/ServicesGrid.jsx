@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useMagneticCards } from '../../useMagneticCards'
+import ImageWithSkeleton from '../ImageWithSkeleton/ImageWithSkeleton'
 import './ServicesGrid.css'
 
 const serviceBase = 'https://res.cloudinary.com/djyb4mzzk/image/upload/v1782224694'
@@ -52,7 +53,7 @@ function ServiceCard({ service }) {
       </div>
 
       <div className="svc-frame">
-        <img className="svc-media" src={service.img} alt={service.title} />
+        <ImageWithSkeleton className="svc-media" src={service.img} alt={service.title} />
       </div>
     </article>
   )
@@ -66,7 +67,8 @@ export default function ServicesGrid() {
     <section id="services" className="svc-section">
       <div className="svc-wrap">
         <h2 className="svc-heading">
-          Pick a place <span className="italic-accent">to start</span>. We&apos;ll{' '}
+          Pick a place <span className="italic-accent">to start</span>. We&apos;ll
+          <br className="svc-heading-break" />
           <span className="italic-accent">take it</span> from there.
         </h2>
 
