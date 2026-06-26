@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
 import Navbar from './components/Navbar/Navbar'
 import Foundation from './components/Foundation/Foundation'
 import Portfolio from './components/Portfolio/Portfolio'
@@ -77,12 +76,16 @@ function SiteLoader({ isReady }) {
   return (
     <div className={`site-loader ${isReady ? 'site-loader--hidden' : ''}`} aria-hidden={isReady}>
       <div className="site-loader__panel">
-        <span className="site-loader__brand">Hierys</span>
-        <CircularProgress
-          size={34}
-          thickness={4}
-          sx={{ color: 'var(--palette-navy)' }}
-        />
+        <div className="site-loader__mark">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="site-loader__copy">
+          <span className="site-loader__brand">Hierys</span>
+          <span className="site-loader__text">Building your experience</span>
+        </div>
+        <div className="site-loader__bar" />
       </div>
     </div>
   )
@@ -96,7 +99,7 @@ function App() {
     let timeoutId = 0
 
     const finishLoading = () => {
-      const remainingDelay = Math.max(0, 700 - (performance.now() - startedAt))
+      const remainingDelay = Math.max(0, 4000 - (performance.now() - startedAt))
       timeoutId = window.setTimeout(() => setSiteReady(true), remainingDelay)
     }
 

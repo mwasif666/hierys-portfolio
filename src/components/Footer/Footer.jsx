@@ -5,7 +5,7 @@ export default function Footer() {
     <footer id="contact" className="footer">
       <div className="footer-grid">
         <div className="foot-brand">
-          <img className="foot-logo" src="/hierys-logo.png" alt="Hierys" />
+          <span className="foot-wordmark">Hierys.</span>
         </div>
 
         <a className="foot-touch" href="mailto:hello@hierys.com">

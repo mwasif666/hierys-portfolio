@@ -19,10 +19,13 @@
   background: #dbe7f3;
   border-radius: 16px;
 }
-.foot-logo {
-  width: min(76%, 660px);
-  height: auto;
-  object-fit: contain;
+.foot-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(56px, 11vw, 168px);
+  line-height: 1;
+  letter-spacing: -4px;
+  color: var(--ink);
 }
 
 .foot-touch {
