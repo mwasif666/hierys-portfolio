@@ -1,0 +1,275 @@
+.toolkit {
+  position: relative;
+  overflow: hidden;
+  min-height: 590px;
+  background: var(--page-bg);
+  padding: 0 var(--section-x-pad);
+}
+
+.toolkit-heading {
+  position: relative;
+  z-index: 2;
+  width: min(900px, 82vw);
+  margin: 0 auto;
+  text-align: center;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(58px, 7vw, 86px);
+  line-height: 0.96;
+  letter-spacing: 0;
+  transform: translateY(-42px);
+}
+
+.toolkit-heading .italic-accent {
+  font-size: 0.95em;
+}
+
+.toolkit-tags {
+  display: none;
+}
+
+.toolkit-cluster {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(1168px, 100%);
+  height: 590px;
+  margin: 0 auto;
+}
+
+.tool-logo {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  background: transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.tool-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tool-logo--figma {
+  top: 12.2%;
+  left: 15.8%;
+}
+
+.tool-logo--excalidraw {
+  top: 16.8%;
+  left: 33.7%;
+}
+
+.tool-logo--davinci {
+  top: 7%;
+  left: 48%;
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #0f2945, #243a63);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.22),
+    0 0 0 2px #d8b53c,
+    0 14px 26px rgba(7, 29, 50, 0.13);
+}
+
+.tool-logo--davinci img {
+  width: 38px;
+  height: 38px;
+}
+
+.tool-logo--gemini {
+  top: 2.5%;
+  left: 71%;
+  width: 70px;
+  height: 70px;
+}
+
+.tool-logo--webflow {
+  top: 22.8%;
+  left: 61.7%;
+}
+
+.tool-logo--after-effects {
+  top: 18.4%;
+  left: 79.4%;
+}
+
+.tool-logo--claude {
+  top: 35.2%;
+  left: 6.5%;
+}
+
+.tool-logo--photoshop {
+  top: 35.3%;
+  right: 5.2%;
+}
+
+.tool-logo--canva {
+  top: 56.8%;
+  left: 18.8%;
+}
+
+.tool-logo--creative-cloud {
+  top: 57%;
+  left: 37%;
+}
+
+.tool-logo--illustrator {
+  top: 56.2%;
+  right: 10.3%;
+}
+
+.tool-logo--framer {
+  bottom: 12.5%;
+  left: 11.2%;
+}
+
+.tool-logo--chatgpt {
+  top: 60.8%;
+  left: 63.2%;
+}
+
+.tool-logo--lottie {
+  bottom: 10.5%;
+  left: 47.4%;
+}
+
+.tool-logo--notion {
+  right: 18.2%;
+  bottom: 9.5%;
+}
+
+@media (max-width: 900px) {
+  .toolkit {
+    min-height: 420px;
+    padding-inline: 16px;
+  }
+
+  .toolkit-cluster {
+    height: 420px;
+  }
+
+  .toolkit-heading {
+    width: min(680px, 86vw);
+    font-size: clamp(42px, 9.2vw, 68px);
+  }
+
+  .tool-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .tool-logo--davinci {
+    width: 56px;
+    height: 56px;
+  }
+
+  .tool-logo--davinci img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 560px) {
+  .toolkit {
+    min-height: 360px;
+  }
+
+  .toolkit-cluster {
+    height: 360px;
+  }
+
+  .toolkit-heading {
+    width: 92vw;
+    font-size: clamp(38px, 12.5vw, 54px);
+    line-height: 0.94;
+  }
+
+  .tool-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tool-logo--figma {
+    left: 6%;
+  }
+
+  .tool-logo--excalidraw {
+    top: 15%;
+    left: 30%;
+  }
+
+  .tool-logo--davinci {
+    top: 7%;
+    left: 48%;
+    width: 44px;
+    height: 44px;
+  }
+
+  .tool-logo--davinci img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .tool-logo--gemini {
+    left: 72%;
+    width: 42px;
+    height: 42px;
+  }
+
+  .tool-logo--after-effects {
+    left: auto;
+    right: 6%;
+  }
+
+  .tool-logo--claude,
+  .tool-logo--photoshop {
+    top: 36%;
+  }
+
+  .tool-logo--webflow {
+    top: 31%;
+    left: 58%;
+  }
+
+  .tool-logo--canva {
+    top: 66%;
+    left: 8%;
+  }
+
+  .tool-logo--creative-cloud {
+    top: 66%;
+    left: 36%;
+  }
+
+  .tool-logo--illustrator {
+    top: 68%;
+    right: 5%;
+  }
+
+  .tool-logo--chatgpt {
+    top: 73%;
+    left: 61%;
+  }
+
+  .tool-logo--framer {
+    left: 7%;
+  }
+
+  .tool-logo--lottie {
+    left: 42%;
+  }
+
+  .tool-logo--notion {
+    right: 8%;
+  }
+}

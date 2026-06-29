@@ -1,101 +1,255 @@
 .footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
   background: var(--page-bg);
-  padding: 14px var(--section-x-pad) 20px;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 16px var(--section-x-pad) 20px;
 }
 
-.footer-grid {
+/* ── Row 1: Get in touch ── */
+.foot-cta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 96px;
+  padding: 20px 20px;
+  background: #f9ffbd;
+  border-radius: 10px;
+  transition: transform 0.25s ease;
+}
+.foot-cta:hover {
+  transform: translateY(-3px);
+}
+.foot-cta-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 4.8vw, 58px);
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--ink);
+}
+.foot-cta-arrow {
+  width: 58px;
+  height: 58px;
+  color: var(--ink);
+  flex: 0 0 auto;
+}
+
+/* ── Row 2: Team ── */
+.foot-team {
   display: grid;
-  grid-template-columns: 2.15fr 1fr;
-  grid-template-rows: clamp(118px, 14vw, 196px) clamp(150px, 16vw, 232px);
+  grid-template-columns: 1fr 1fr;
   gap: var(--grid-gap);
 }
 
-.foot-brand {
-  grid-column: 1;
-  grid-row: 1 / 3;
+.foot-person {
   display: flex;
-  align-items: center;
-  padding: 0 clamp(24px, 4vw, 64px);
-  background: #dbe7f3;
-  border-radius: 16px;
+  gap: 26px;
+  min-height: 326px;
+  padding: 14px 16px;
+  border-radius: 10px;
 }
-.foot-wordmark {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(56px, 11vw, 168px);
-  line-height: 1;
-  letter-spacing: -4px;
-  color: var(--ink);
+.foot-person--lime {
+  background: #f9ffbd;
+}
+.foot-person--sky {
+  background: var(--palette-sky);
 }
 
-.foot-touch {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex;
-  align-items: flex-start;
-  padding: clamp(18px, 2vw, 28px);
-  background: var(--palette-spark);
-  border-radius: 16px;
-  transition: transform 0.25s ease;
+.foot-photo {
+  flex: 0 0 48%;
+  align-self: stretch;
+  aspect-ratio: 1 / 1;
+  border-radius: 7px;
+  overflow: hidden;
+  background: rgba(7, 29, 50, 0.12);
 }
-.foot-touch span {
+.foot-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foot-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding-block: 12px;
+}
+.foot-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(24px, 2.6vw, 38px);
+  font-size: clamp(28px, 2.5vw, 32px);
   line-height: 1.05;
   letter-spacing: -1px;
   color: var(--ink);
 }
-.foot-touch:hover {
-  transform: translateY(-3px);
+.foot-role {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(17px, 1.55vw, 19px);
+  color: rgba(7, 29, 50, 0.56);
+  margin-top: 4px;
 }
-
-.foot-email {
-  grid-column: 2;
-  grid-row: 2;
+.foot-meta {
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   gap: 8px;
-  padding: clamp(18px, 2vw, 28px);
-  background: #dbe7f3;
-  border-radius: 16px;
-  transition: transform 0.25s ease;
 }
-.foot-email-label {
+.foot-lang,
+.foot-mail {
   font-family: var(--font-display);
-  font-size: clamp(13px, 1.1vw, 15px);
-  color: rgba(7, 29, 50, 0.55);
+  font-weight: 500;
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.25;
+  color: rgba(7, 29, 50, 0.58);
+  word-break: break-word;
 }
-.foot-email-addr {
+.foot-mail:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.foot-appt {
+  align-self: flex-start;
+  margin-top: auto;
+  border: 0;
+  padding: 9px 12px;
+  background: var(--palette-white);
+  border-radius: 4px;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(18px, 1.9vw, 26px);
+  font-size: clamp(14px, 1.25vw, 16px);
   letter-spacing: -0.5px;
   color: var(--ink);
+  transition: transform 0.2s ease;
+}
+.foot-appt:hover {
+  transform: translateY(-2px);
+}
+
+.calendly-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.calendly-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(7, 29, 50, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.calendly-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(1040px, 96vw);
+  height: min(760px, 90vh);
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--palette-white);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+}
+
+.calendly-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  border: 0;
+  border-radius: 6px;
+  padding: 9px 14px;
+  background: var(--palette-navy);
+  color: var(--palette-white);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.calendly-modal__frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── Row 3: Brand + email ── */
+.foot-bottom {
+  display: grid;
+  grid-template-columns: 0.81fr 1fr;
+  gap: var(--grid-gap);
+}
+.foot-brand {
+  display: flex;
+  align-items: center;
+  min-height: 250px;
+  padding: 30px 30px;
+  background: var(--palette-sky);
+  border-radius: 10px;
+}
+.foot-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(82px, 11vw, 128px);
+  line-height: 1;
+  letter-spacing: -6px;
+  color: var(--ink);
+}
+.foot-email {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  min-height: 250px;
+  padding: 34px 34px;
+  background: #f9ffbd;
+  border-radius: 10px;
+  transition: transform 0.25s ease;
 }
 .foot-email:hover {
   transform: translateY(-3px);
 }
+.foot-email-label {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.45vw, 19px);
+  color: rgba(7, 29, 50, 0.56);
+}
+.foot-email-addr {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 2.8vw, 32px);
+  letter-spacing: -1.2px;
+  color: var(--ink);
+}
 
-@media (max-width: 620px) {
-  .footer-grid {
+@media (max-width: 720px) {
+  .foot-team {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+  }
+  .foot-bottom {
+    grid-template-columns: 1fr;
   }
   .foot-brand {
-    grid-column: 1;
-    grid-row: 1;
-    min-height: 200px;
+    min-height: 180px;
+    justify-content: center;
   }
-  .foot-touch {
-    grid-column: 1;
-    grid-row: 2;
-    min-height: 120px;
+}
+
+@media (max-width: 460px) {
+  .foot-person {
+    flex-direction: column;
   }
-  .foot-email {
-    grid-column: 1;
-    grid-row: 3;
-    min-height: 130px;
+  .foot-photo {
+    flex: none;
+    width: 100%;
   }
 }

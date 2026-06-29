@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap");
 
 /* ── Hierys brand palette (pulled from the Send website) ── */
 :root {
@@ -14,12 +14,12 @@
   --muted-ink: rgba(7, 29, 50, 0.62);
   --line: rgba(7, 29, 50, 0.12);
 
-  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Geist", system-ui, sans-serif;
   --font-body: "Geist", system-ui, sans-serif;
   --font-mono: "Geist Mono", "SFMono-Regular", Consolas, monospace;
   --font-italic: "Instrument Serif", Georgia, serif;
 
-  --site-width: 1040px;
+  --site-width: 1400px;
   --section-x-pad: clamp(5px, 1vw, 10px);
   --grid-gap: 10px;
   --tile-radius: 8px;

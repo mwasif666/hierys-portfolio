@@ -1,3 +1,4 @@
+import Toolkit from '../Toolkit/Toolkit'
 import './Process.css'
 
 const pills = [
@@ -53,6 +54,8 @@ export default function Process() {
           ))}
         </div>
       </div>
+
+      <Toolkit />
 
       <div className="proc-wrap">
         <h2 className="proc-heading">

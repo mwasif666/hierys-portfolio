@@ -47,7 +47,7 @@
   }
 }
 .trusted-logo {
-  height: 52px;
+  height: 88px;
   width: auto;
   object-fit: contain;
   flex: 0 0 auto;
@@ -92,7 +92,7 @@
     padding-inline: 28px;
   }
   .trusted-logo {
-    height: 40px;
+    height: 64px;
   }
   .ai-head {
     letter-spacing: -0.6px;

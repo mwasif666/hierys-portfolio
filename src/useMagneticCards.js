@@ -4,7 +4,14 @@ import gsap from 'gsap'
 /* Magnetic cursor-follow for cards — ported from the Hierys "Our Work"
    SelectedHero: each card glides toward the pointer with a slight rotation
    and scale, easing back on leave. Desktop + motion-allowed only. */
-export function useMagneticCards(containerRef, selector) {
+export function useMagneticCards(containerRef, selector, options = {}) {
+  const {
+    xStrength = 0.07,
+    yStrength = 0.07,
+    rotationStrength = 0.005,
+    hoverScale = 1.025,
+  } = options
+
   useEffect(() => {
     const container = containerRef.current
     if (!container) return undefined
@@ -27,13 +34,13 @@ export function useMagneticCards(containerRef, selector) {
         const relX = event.clientX - (rect.left + rect.width / 2)
         const relY = event.clientY - (rect.top + rect.height / 2)
         // Subtle drift — just enough to feel alive.
-        xTo(relX * 0.07)
-        yTo(relY * 0.07)
-        rTo(relX * 0.005)
+        xTo(relX * xStrength)
+        yTo(relY * yStrength)
+        rTo(relX * rotationStrength)
       }
       const onEnter = () => {
         card.style.zIndex = '5'
-        sTo(1.025)
+        sTo(hoverScale)
       }
       const onLeave = () => {
         xTo(0)
@@ -57,5 +64,5 @@ export function useMagneticCards(containerRef, selector) {
     })
 
     return () => cleanups.forEach((fn) => fn())
-  }, [containerRef, selector])
+  }, [containerRef, selector, xStrength, yStrength, rotationStrength, hoverScale])
 }

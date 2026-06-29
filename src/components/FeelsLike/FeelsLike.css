@@ -1,37 +1,180 @@
 .feels-section {
   background: var(--page-bg);
-  padding: clamp(42px, 5vw, 72px) var(--section-x-pad) clamp(34px, 4.5vw, 56px);
   overflow: hidden;
+}
+
+.testimonial-area {
+  padding: 46px 0 52px;
+  background: var(--page-bg);
+}
+
+.testimonial-eyebrow {
+  margin: 0 auto 32px;
   text-align: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(7, 29, 50, 0.56);
+}
+
+.testimonial-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.testimonial-row {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+  animation: testimonial-scroll 44s linear infinite;
+}
+
+.testimonial-row--reverse {
+  transform: translateX(-220px);
+  animation-name: testimonial-scroll-reverse;
+}
+
+.testimonial-marquee:hover .testimonial-row {
+  animation-play-state: paused;
+}
+
+.testimonial-card {
+  flex: 0 0 382px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 212px;
+  padding: 24px 32px 30px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.testimonial-quote {
+  max-width: 31ch;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.12;
+  color: rgba(7, 29, 50, 0.48);
+}
+
+.testimonial-foot {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.testimonial-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  flex: 0 0 auto;
+}
+
+.testimonial-person {
+  min-width: 0;
+  margin-left: 12px;
+}
+
+.testimonial-person h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(7, 29, 50, 0.62);
+}
+
+.testimonial-person p {
+  margin-top: 5px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(7, 29, 50, 0.48);
+  white-space: nowrap;
+}
+
+.testimonial-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  margin-left: auto;
+  color: #111111;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  line-height: 1;
+  transform: translateY(5px);
+}
+
+.testimonial-logo strong {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.testimonial-logo span {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.feels-showcase {
+  padding: 46px var(--section-x-pad) clamp(34px, 4.5vw, 56px);
+  text-align: center;
+  background: var(--page-bg);
 }
 
 .feels-head {
   margin: 0 auto clamp(24px, 3vw, 36px);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(40px, 6.4vw, 92px);
+  font-size: clamp(58px, 8.6vw, 112px);
   line-height: 1.02;
-  letter-spacing: -2.5px;
+  letter-spacing: -4px;
   color: var(--ink);
 }
+
 .feels-head .italic-accent {
+  font-family: var(--font-italic);
   font-weight: 400;
   font-size: 1.02em;
   letter-spacing: -1px;
 }
 
-/* Responsive scaling of the fixed-size BounceCards stage */
 .feels-stage {
   --bc-scale: 1;
   height: calc(360px * var(--bc-scale));
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 1180px;
+  max-width: var(--site-width);
   margin: 0 auto;
 }
+
 .feels-stage > div {
   transform: scale(var(--bc-scale));
+}
+
+@keyframes testimonial-scroll {
+  from {
+    transform: translateX(-220px);
+  }
+  to {
+    transform: translateX(calc(-220px - 50%));
+  }
+}
+
+@keyframes testimonial-scroll-reverse {
+  from {
+    transform: translateX(calc(-220px - 50%));
+  }
+  to {
+    transform: translateX(-220px);
+  }
 }
 
 @media (max-width: 1040px) {
@@ -39,11 +182,26 @@
     --bc-scale: 0.82;
   }
 }
+
 @media (max-width: 760px) {
+  .testimonial-area {
+    padding-block: 38px 52px;
+  }
+
+  .testimonial-card {
+    flex-basis: 310px;
+    height: 198px;
+    padding: 22px 26px 26px;
+  }
+
+  .feels-showcase {
+    padding-top: 48px;
+  }
+
   .feels-head {
-    font-size: clamp(25px, 6.4vw, 34px);
-    line-height: 1.06;
-    letter-spacing: 0;
+    font-size: clamp(42px, 12vw, 76px);
+    line-height: 1.04;
+    letter-spacing: -2px;
   }
 
   .feels-stage {

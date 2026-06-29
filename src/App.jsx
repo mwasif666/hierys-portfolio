@@ -9,6 +9,7 @@ import OneTeam from './components/OneTeam/OneTeam'
 import FeelsLike from './components/FeelsLike/FeelsLike'
 import Footer from './components/Footer/Footer'
 import ImageWithSkeleton from './components/ImageWithSkeleton/ImageWithSkeleton'
+import WeaveSpinner from './components/WeaveSpinner/WeaveSpinner'
 import './App.css'
 
 const featuredProjectImage =
@@ -76,11 +77,7 @@ function SiteLoader({ isReady }) {
   return (
     <div className={`site-loader ${isReady ? 'site-loader--hidden' : ''}`} aria-hidden={isReady}>
       <div className="site-loader__panel">
-        <div className="site-loader__mark">
-          <span />
-          <span />
-          <span />
-        </div>
+        <WeaveSpinner />
         <div className="site-loader__copy">
           <span className="site-loader__brand">Hierys</span>
           <span className="site-loader__text">Building your experience</span>

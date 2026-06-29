@@ -4,7 +4,8 @@
 }
 
 .svc-wrap {
-  max-width: none;
+  width: 100%;
+  max-width: var(--site-width);
   margin: 0 auto;
 }
 
@@ -35,10 +36,10 @@
 .svc-card {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: stretch;
   aspect-ratio: 1.85 / 1;
   min-height: 0;
-  padding: 14px 12px;
+  padding: 18px 16px;
   border-radius: 12px;
   overflow: hidden;
   will-change: transform;
@@ -62,16 +63,48 @@
   display: flex;
   flex: 0 1 46%;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 2px;
+  justify-content: space-between;
+  gap: 18px;
   min-width: 0;
   z-index: 2;
+}
+
+.svc-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.svc-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: rgba(7, 29, 50, 0.58);
+}
+
+.svc-stat-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(19px, 1.7vw, 23px);
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: rgba(7, 29, 50, 0.64);
+}
+
+.svc-stat-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  max-width: 15ch;
+  font-size: clamp(11px, 1vw, 13px);
+  line-height: 1.02;
+  letter-spacing: 0;
+  color: rgba(7, 29, 50, 0.58);
 }
 
 .svc-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(28px, 3.2vw, 30px);
+  font-size: clamp(30px, 2.55vw, 36px);
   line-height: 0.98;
   letter-spacing: 0;
   color: var(--palette-navy);
@@ -80,16 +113,17 @@
 .svc-sub {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(14px, 1.7vw, 16px);
+  font-size: clamp(15px, 1.42vw, 18px);
+  line-height: 1.05;
   letter-spacing: 0;
   color: rgba(7, 29, 50, 0.62);
 }
 
 .svc-frame {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  bottom: 5px;
+  top: 16px;
+  right: 12px;
+  bottom: 16px;
   width: 51%;
   border-radius: 12px;
   overflow: hidden;
@@ -149,5 +183,20 @@
 
   .svc-card {
     aspect-ratio: 2 / 1;
+    padding: 16px 14px;
+  }
+
+  .svc-frame {
+    top: 14px;
+    right: 10px;
+    bottom: 14px;
+  }
+
+  .svc-stat-num {
+    font-size: 18px;
+  }
+
+  .svc-stat-label {
+    font-size: 11px;
   }
 }

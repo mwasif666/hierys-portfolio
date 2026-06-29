@@ -4,7 +4,8 @@ import './Foundation.css'
    img1 = provided asset. img2 = swap in the phone/app image when available. */
 const INLINE_IMG_1 =
   'https://res.cloudinary.com/djyb4mzzk/image/upload/v1782221023/14_1_xi5e6t.png'
-const INLINE_IMG_2 = INLINE_IMG_1 // TODO: replace with the second (phone) image URL
+const INLINE_IMG_2 =
+  'https://res.cloudinary.com/djyb4mzzk/image/upload/v1782466892/9_2_f7gp4b.png'
 
 export default function Foundation() {
   return (
