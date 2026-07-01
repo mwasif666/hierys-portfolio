@@ -11,14 +11,14 @@ export default function Foundation() {
   return (
     <section id="foundation" className="foundation">
       <h2 className="foundation-head">
-        <span className="fh-line">You don&apos;t have a</span>
+        <span className="fh-line">We help your brand grow with</span>
         <span className="fh-line">
-          marketing <img className="inline-img" src={INLINE_IMG_1} alt="" /> problem.
+          clearer <img className="inline-img" src={INLINE_IMG_1} alt="" /> strategy, sharper
         </span>
         <span className="fh-line">
-          You have <img className="inline-img" src={INLINE_IMG_2} alt="" /> a foundation
+          stories, and <img className="inline-img" src={INLINE_IMG_2} alt="" /> systems that
         </span>
-        <span className="fh-line">problem.</span>
+        <span className="fh-line">move together.</span>
       </h2>
     </section>
   )

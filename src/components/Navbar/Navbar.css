@@ -13,6 +13,7 @@
   border-radius: 16px;
   background: var(--palette-navy);
   box-shadow: 0 18px 44px rgba(7, 29, 50, 0.36);
+  max-width: calc(100vw - 20px);
 }
 
 /* Lime logo square (the "hi" mark) */
@@ -120,12 +121,77 @@
 @media (max-width: 560px) {
   .navdock {
     bottom: 14px;
+    gap: 4px;
+    padding: 6px;
+    width: min(360px, calc(100vw - 24px));
+    max-width: none;
+  }
+
+  .nav-logo,
+  .nav-item,
+  .nav-hint {
+    height: 44px;
+  }
+
+  .nav-logo {
+    width: 44px;
+  }
+
+  .nav-items {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  .nav-items-inner {
+    width: 100%;
+    justify-content: stretch;
+    gap: 4px;
+  }
+
+  /* Even, equal-width icon buttons across the dock */
+  .nav-item {
+    flex: 1 1 0;
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  .nav-sep {
+    display: none;
+  }
+
+  .nav-item svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Labels never reveal on touch — keep it icon-only & tidy */
+  .nav-label {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .navdock {
     gap: 3px;
     padding: 5px;
   }
+
+  .nav-items-inner {
+    gap: 3px;
+  }
+
   .nav-logo,
   .nav-item,
   .nav-hint {
     height: 42px;
+  }
+
+  .nav-logo {
+    width: 42px;
+  }
+
+  .nav-item svg {
+    width: 18px;
+    height: 18px;
   }
 }

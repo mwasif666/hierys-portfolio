@@ -32,12 +32,12 @@
 .inline-img {
   display: inline-block;
   width: auto;
-  height: 0.78em;
+  height: 0.92em;
   margin: 0 0.08em;
   border-radius: 0.14em;
   object-fit: cover;
   vertical-align: middle;
-  transform: translateY(-0.04em);
+  transform: translateY(-0.03em);
 }
 
 @media (max-width: 560px) {

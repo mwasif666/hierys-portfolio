@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { sections } from '../../sections'
 import './Navbar.css'
 
@@ -47,7 +48,16 @@ export default function Navbar() {
 
   const go = (id) => {
     setActive(id)
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById(id)
+    if (!el) return
+    // The page is driven by GSAP ScrollSmoother (transform-based), so native
+    // scrollIntoView lands in the wrong place — use the smoother when present.
+    const smoother = ScrollSmoother.get()
+    if (smoother) {
+      smoother.scrollTo(el, true, 'top top')
+    } else {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 
   return (

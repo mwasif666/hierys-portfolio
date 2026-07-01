@@ -10,6 +10,9 @@ export function useMagneticCards(containerRef, selector, options = {}) {
     yStrength = 0.07,
     rotationStrength = 0.005,
     hoverScale = 1.025,
+    moveDuration = 0.7,
+    scaleDuration = 0.5,
+    ease = 'power3',
   } = options
 
   useEffect(() => {
@@ -24,10 +27,10 @@ export function useMagneticCards(containerRef, selector, options = {}) {
     const cleanups = []
 
     cards.forEach((card) => {
-      const xTo = gsap.quickTo(card, 'x', { duration: 0.7, ease: 'power3' })
-      const yTo = gsap.quickTo(card, 'y', { duration: 0.7, ease: 'power3' })
-      const rTo = gsap.quickTo(card, 'rotation', { duration: 0.7, ease: 'power3' })
-      const sTo = gsap.quickTo(card, 'scale', { duration: 0.5, ease: 'power3' })
+      const xTo = gsap.quickTo(card, 'x', { duration: moveDuration, ease })
+      const yTo = gsap.quickTo(card, 'y', { duration: moveDuration, ease })
+      const rTo = gsap.quickTo(card, 'rotation', { duration: moveDuration, ease })
+      const sTo = gsap.quickTo(card, 'scale', { duration: scaleDuration, ease })
 
       const onMove = (event) => {
         const rect = card.getBoundingClientRect()
@@ -64,5 +67,15 @@ export function useMagneticCards(containerRef, selector, options = {}) {
     })
 
     return () => cleanups.forEach((fn) => fn())
-  }, [containerRef, selector, xStrength, yStrength, rotationStrength, hoverScale])
+  }, [
+    containerRef,
+    selector,
+    xStrength,
+    yStrength,
+    rotationStrength,
+    hoverScale,
+    moveDuration,
+    scaleDuration,
+    ease,
+  ])
 }

@@ -1,4 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import Navbar from './components/Navbar/Navbar'
 import Foundation from './components/Foundation/Foundation'
 import Portfolio from './components/Portfolio/Portfolio'
@@ -11,6 +14,8 @@ import Footer from './components/Footer/Footer'
 import ImageWithSkeleton from './components/ImageWithSkeleton/ImageWithSkeleton'
 import WeaveSpinner from './components/WeaveSpinner/WeaveSpinner'
 import './App.css'
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 const featuredProjectImage =
   'https://res.cloudinary.com/djyb4mzzk/image/upload/v1778845884/14_1_efw5gd.png'
@@ -91,6 +96,41 @@ function SiteLoader({ isReady }) {
 function App() {
   const [siteReady, setSiteReady] = useState(false)
 
+  useLayoutEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+
+    const smoother = ScrollSmoother.create({
+      wrapper: '#smooth-wrapper',
+      content: '#smooth-content',
+      smooth: 1.15,
+      smoothTouch: 0.08,
+      effects: true,
+    })
+
+    const handleAnchorClick = (event) => {
+      const link = event.target.closest('a[href^="#"]')
+      if (!link) return
+
+      const hash = link.getAttribute('href')
+      const target = hash && hash !== '#' ? document.querySelector(hash) : null
+      if (!target) return
+
+      event.preventDefault()
+      smoother.scrollTo(target, true, 'top top')
+      window.history.pushState(null, '', hash)
+    }
+
+    const refresh = () => ScrollTrigger.refresh()
+    document.addEventListener('click', handleAnchorClick)
+    window.addEventListener('load', refresh)
+
+    return () => {
+      document.removeEventListener('click', handleAnchorClick)
+      window.removeEventListener('load', refresh)
+      smoother.kill()
+    }
+  }, [])
+
   useEffect(() => {
     const startedAt = performance.now()
     let timeoutId = 0
@@ -115,8 +155,10 @@ function App() {
   return (
     <main className="site-shell">
       <SiteLoader isReady={siteReady} />
-      <section id="home" className="page">
-        <div className="banner-grid">
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          <section id="home" className="page">
+            <div className="banner-grid">
           {/* ── Left lime card ── */}
           <article className="card card--lime left">
             <a className="brand" href="#home" aria-label="Hierys home">
@@ -170,17 +212,19 @@ function App() {
               <CountUpStat value={500} />
             </span>
           </article>
-        </div>
-      </section>
+            </div>
+          </section>
 
-      <Foundation />
-      <Portfolio />
-      <ServicesGrid />
-      <Process />
-      <Trusted />
-      <OneTeam />
-      <FeelsLike />
-      <Footer />
+          <Foundation />
+          <Portfolio />
+          <ServicesGrid />
+          <Process />
+          <Trusted />
+          <OneTeam />
+          <FeelsLike />
+          <Footer />
+        </div>
+      </div>
 
       <Navbar />
     </main>

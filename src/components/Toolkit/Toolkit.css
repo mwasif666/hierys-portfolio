@@ -3,7 +3,7 @@
   overflow: hidden;
   min-height: 590px;
   background: var(--page-bg);
-  padding: 0 var(--section-x-pad);
+  padding: 80px var(--section-x-pad) 0;
 }
 
 .toolkit-heading {
@@ -51,11 +51,85 @@
   will-change: transform;
 }
 
+.tool-logo__float {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  animation: tool-float 5.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
 .tool-logo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+@keyframes tool-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(6px, -8px, 0) rotate(3deg);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  75% {
+    transform: translate3d(-6px, 8px, 0) rotate(-3deg);
+  }
+}
+
+/* Varied durations + offsets so the cluster breathes organically */
+.tool-logo--figma .tool-logo__float { animation-duration: 5.2s; animation-delay: -0.3s; }
+.tool-logo--excalidraw .tool-logo__float { animation-duration: 6.4s; animation-delay: -1.2s; }
+.tool-logo--davinci .tool-logo__float { animation-duration: 5.8s; animation-delay: -2s; }
+.tool-logo--gemini .tool-logo__float { animation-duration: 6.8s; animation-delay: -0.7s; }
+.tool-logo--webflow .tool-logo__float { animation-duration: 5s; animation-delay: -1.6s; }
+.tool-logo--after-effects .tool-logo__float { animation-duration: 6.2s; animation-delay: -0.4s; }
+.tool-logo--claude .tool-logo__float { animation-duration: 5.6s; animation-delay: -2.4s; }
+.tool-logo--photoshop .tool-logo__float { animation-duration: 6.6s; animation-delay: -1s; }
+.tool-logo--canva .tool-logo__float { animation-duration: 5.4s; animation-delay: -1.8s; }
+.tool-logo--creative-cloud .tool-logo__float { animation-duration: 6s; animation-delay: -0.6s; }
+.tool-logo--illustrator .tool-logo__float { animation-duration: 5.9s; animation-delay: -2.2s; }
+.tool-logo--framer .tool-logo__float { animation-duration: 6.3s; animation-delay: -0.9s; }
+.tool-logo--chatgpt .tool-logo__float { animation-duration: 5.3s; animation-delay: -1.4s; }
+.tool-logo--lottie .tool-logo__float { animation-duration: 6.7s; animation-delay: -0.2s; }
+.tool-logo--notion .tool-logo__float { animation-duration: 5.7s; animation-delay: -2.6s; }
+
+.toolkit-more {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: -22px auto 42px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--palette-white);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(7, 29, 50, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.toolkit-more:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(7, 29, 50, 0.26);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-logo__float {
+    animation: none;
+  }
 }
 
 .tool-logo--figma {
@@ -74,6 +148,9 @@
   width: 72px;
   height: 72px;
   border-radius: 14px;
+}
+
+.tool-logo--davinci .tool-logo__float {
   background: linear-gradient(145deg, #0f2945, #243a63);
   box-shadow:
     inset 0 0 0 2px rgba(255, 255, 255, 0.22),
@@ -179,97 +256,62 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 760px) {
   .toolkit {
-    min-height: 360px;
+    min-height: 0;
+    padding: 48px 16px 42px;
   }
 
+  /* Phones: drop the scatter — heading on top, all logos in a tidy grid below */
   .toolkit-cluster {
-    height: 360px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    height: auto;
   }
 
   .toolkit-heading {
-    width: 92vw;
-    font-size: clamp(38px, 12.5vw, 54px);
-    line-height: 0.94;
+    flex: 0 0 100%;
+    position: static;
+    width: auto;
+    margin: 0 0 30px;
+    transform: none;
+    font-size: clamp(30px, 8vw, 44px);
+    line-height: 1.04;
   }
 
   .tool-logo {
-    width: 40px;
-    height: 40px;
+    position: static;
+    width: 56px;
+    height: 56px;
+    z-index: 1;
   }
 
-  .tool-logo--figma {
-    left: 6%;
-  }
-
-  .tool-logo--excalidraw {
-    top: 15%;
-    left: 30%;
+  /* Phones: static grid — no floating movement */
+  .tool-logo__float {
+    animation: none;
+    transform: none;
   }
 
   .tool-logo--davinci {
-    top: 7%;
-    left: 48%;
-    width: 44px;
-    height: 44px;
+    width: 56px;
+    height: 56px;
   }
 
   .tool-logo--davinci img {
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
   }
 
   .tool-logo--gemini {
-    left: 72%;
-    width: 42px;
-    height: 42px;
+    width: 58px;
+    height: 58px;
   }
 
-  .tool-logo--after-effects {
-    left: auto;
-    right: 6%;
-  }
-
-  .tool-logo--claude,
-  .tool-logo--photoshop {
-    top: 36%;
-  }
-
-  .tool-logo--webflow {
-    top: 31%;
-    left: 58%;
-  }
-
-  .tool-logo--canva {
-    top: 66%;
-    left: 8%;
-  }
-
-  .tool-logo--creative-cloud {
-    top: 66%;
-    left: 36%;
-  }
-
-  .tool-logo--illustrator {
-    top: 68%;
-    right: 5%;
-  }
-
-  .tool-logo--chatgpt {
-    top: 73%;
-    left: 61%;
-  }
-
-  .tool-logo--framer {
-    left: 7%;
-  }
-
-  .tool-logo--lottie {
-    left: 42%;
-  }
-
-  .tool-logo--notion {
-    right: 8%;
+  .toolkit-more {
+    margin: 30px auto 0;
   }
 }

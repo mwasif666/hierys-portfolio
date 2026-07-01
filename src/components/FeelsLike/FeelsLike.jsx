@@ -13,11 +13,11 @@ const testimonials = Array.from({ length: 8 }, (_, index) => ({
 }))
 
 const cards = [
-  { kind: 'stat', theme: 'blue', value: '8+', label: 'Countries', foot: 'Sitting behind every decision', z: 3 },
-  { kind: 'image', src: `${base}/v1782250610/Rectangle_311_xtyyqh.png`, z: 2 },
-  { kind: 'stat', theme: 'lime', value: '10k+', foot: 'Pieces of content out the door', z: 3 },
-  { kind: 'image', src: `${base}/v1782250610/image_39_v23rd1.png`, z: 2 },
-  { kind: 'stat', theme: 'pink', value: '50+', foot: 'Brands built, fixed, or rescued', z: 3 },
+  { kind: 'stat', theme: 'blue', value: '8+', label: 'Countries', foot: 'Served through seamless remote collaboration', z: 3 },
+  { kind: 'image', src: `${base}/v1782912568/Group_90_vja23j.png`, z: 2 },
+  { kind: 'stat', theme: 'lime', value: '80+', label: 'Brands', foot: 'Built with consistent identity and creative direction', z: 3 },
+  { kind: 'image', src: `${base}/v1782912568/Rectangle_255_y3vtea.png`, z: 2 },
+  { kind: 'stat', theme: 'pink', value: '500+', label: 'Projects', foot: 'Delivered across brand, website, content, and growth', z: 3 },
 ]
 
 const transformStyles = [
@@ -63,6 +63,7 @@ function TestimonialRow({ reverse = false }) {
 export default function FeelsLike() {
   return (
     <section id="feels" className="feels-section">
+      {/* Testimonials hidden for now — restore this block to bring it back
       <div className="testimonial-area">
         <p className="testimonial-eyebrow">TESTIMONIALS</p>
 
@@ -71,6 +72,7 @@ export default function FeelsLike() {
           <TestimonialRow reverse />
         </div>
       </div>
+      */}
 
       <div className="feels-showcase">
         <h2 className="feels-head">

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useMagneticCards } from '../../useMagneticCards'
+import { useFloatingIcons } from '../../useFloatingIcons'
 import './Toolkit.css'
 
 /* Skill tags shown above the tool cluster */
@@ -36,12 +36,7 @@ const tools = [
 
 export default function Toolkit() {
   const gridRef = useRef(null)
-  useMagneticCards(gridRef, '.tool-logo', {
-    xStrength: 0.22,
-    yStrength: 0.22,
-    rotationStrength: 0.018,
-    hoverScale: 1.08,
-  })
+  useFloatingIcons(gridRef, '.tool-logo')
 
   return (
     <section id="toolkit" className="toolkit">
@@ -66,10 +61,16 @@ export default function Toolkit() {
             key={tool.name}
             title={tool.name}
           >
-            <img src={tool.src} alt={tool.name} loading="eager" />
+            <span className="tool-logo__float">
+              <img src={tool.src} alt={tool.name} loading="eager" />
+            </span>
           </div>
         ))}
       </div>
+
+      <a className="toolkit-more" href="#contact">
+        And Many More
+      </a>
     </section>
   )
 }

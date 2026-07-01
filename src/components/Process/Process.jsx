@@ -59,7 +59,9 @@ export default function Process() {
 
       <div className="proc-wrap">
         <h2 className="proc-heading">
-          We listen. We map it. We build it. You feel it.
+          We build brands people
+          <br />
+          understand, trust, and remember.
         </h2>
 
         <div className="proc-grid">
