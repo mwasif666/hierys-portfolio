@@ -197,6 +197,42 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        <div className="foot-website">
+          <div className="foot-website-card">
+            <div className="foot-website-copy">
+              <svg className="foot-website-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3Z" />
+              </svg>
+              <div>
+                <h2 className="foot-website-title">Visit Our Website</h2>
+                <p className="foot-website-description">
+                  Explore our work, case studies and services.
+                </p>
+              </div>
+            </div>
+
+            <a
+              className="foot-website-link"
+              href="https://www.hierys.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit the Hierys website"
+            >
+              <span className="foot-website-url">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3Z" />
+                </svg>
+                <span>www.hierys.com</span>
+              </span>
+              <svg className="foot-website-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 18 18 6M9 6h9v9" />
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
 
       {calendlyUrl &&

@@ -239,7 +239,7 @@
 /* ── Row 3: Brand + email ── */
 .foot-bottom {
   display: grid;
-  grid-template-columns: 0.81fr 1fr;
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.82fr) minmax(340px, 0.93fr);
   gap: var(--grid-gap);
 }
 .foot-brand {
@@ -326,7 +326,115 @@
   color: var(--ink);
 }
 
+.foot-website {
+  min-width: 0;
+  min-height: 250px;
+  padding: 24px;
+  border-radius: 10px;
+  background: #f9ffbd;
+}
+.foot-website-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 30px;
+  border: 1.5px solid rgba(7, 29, 50, 0.82);
+  border-radius: 10px;
+}
+.foot-website-copy {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+}
+.foot-website-icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.foot-website-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.75vw, 24px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+.foot-website-description {
+  max-width: 300px;
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.25vw, 18px);
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(7, 29, 50, 0.6);
+}
+.foot-website-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+  padding: 13px 18px;
+  border: 1.5px solid rgba(7, 29, 50, 0.82);
+  border-radius: 999px;
+  color: var(--ink);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.foot-website-link:hover {
+  transform: translateY(-2px);
+  background: var(--ink);
+  color: var(--palette-white);
+}
+.foot-website-url {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.25vw, 18px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.foot-website-url svg {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.foot-website-arrow {
+  flex: 0 0 auto;
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 1180px) {
+  .foot-bottom {
+    grid-template-columns: 1fr 1fr;
+  }
+  .foot-brand {
+    grid-row: span 2;
+  }
+}
+
 @media (max-width: 720px) {
+  .footer {
+    padding-bottom: 92px;
+  }
   .foot-team {
     grid-template-columns: 1fr;
   }
@@ -334,8 +442,12 @@
     grid-template-columns: 1fr;
   }
   .foot-brand {
+    grid-row: auto;
     min-height: 180px;
     justify-content: center;
+  }
+  .foot-website-card {
+    min-height: 235px;
   }
 }
 
@@ -359,5 +471,19 @@
   }
   .foot-appt {
     padding: 12px 22px;
+  }
+  .foot-website {
+    min-height: auto;
+    padding: 14px;
+  }
+  .foot-website-card {
+    min-height: 220px;
+    padding: 22px 18px;
+  }
+  .foot-website-link {
+    padding-inline: 15px;
+  }
+  .foot-website-url {
+    gap: 8px;
   }
 }

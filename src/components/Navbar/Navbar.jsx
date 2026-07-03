@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { sections } from '../../sections'
 import './Navbar.css'
@@ -28,6 +28,8 @@ const items = sections.slice(1)
 
 export default function Navbar() {
   const [active, setActive] = useState(home.id)
+  const [isContactDocked, setIsContactDocked] = useState(false)
+  const dockRef = useRef(null)
 
   // Scroll-spy: highlight the section crossing the middle of the viewport.
   useEffect(() => {
@@ -46,6 +48,81 @@ export default function Navbar() {
     return () => observer.disconnect()
   }, [])
 
+  // Once the footer's logo card reaches the viewport, dock the floating nav to
+  // its lower edge. It continues following the card as it scrolls away, which
+  // keeps the social links in the adjacent/stacked card completely unobstructed.
+  useEffect(() => {
+    const dock = dockRef.current
+    const brandCard = document.querySelector('.foot-brand')
+    const brandWordmark = document.querySelector('.foot-wordmark')
+    const footer = document.getElementById('contact')
+    if (!dock || !brandCard || !brandWordmark || !footer) return undefined
+
+    let frameId = 0
+    let docked = false
+    let trackUntil = 0
+
+    const updateDock = () => {
+      frameId = 0
+
+      const brandRect = brandCard.getBoundingClientRect()
+      const wordmarkRect = brandWordmark.getBoundingClientRect()
+      const footerRect = footer.getBoundingClientRect()
+      const dockRect = dock.getBoundingClientRect()
+      const viewportWidth = window.innerWidth
+      const viewportHeight = window.innerHeight
+      const normalTop = viewportHeight - dockRect.height - (viewportWidth <= 560 ? 14 : 22)
+      const shouldDock =
+        brandRect.top <= viewportHeight - dockRect.height - 24 &&
+        footerRect.bottom > 0
+
+      if (shouldDock) {
+        const edgeSpace = 10
+        const halfDock = dockRect.width / 2
+        const wordmarkStart = wordmarkRect.left
+        const isStackedFooter = viewportWidth <= 720
+        const dockLeft = isStackedFooter
+          ? viewportWidth / 2
+          : Math.min(
+              viewportWidth - halfDock - edgeSpace,
+              Math.max(halfDock + edgeSpace, wordmarkStart + halfDock),
+            )
+        const dockTop = isStackedFooter
+          ? footerRect.bottom - dockRect.height - 18
+          : Math.min(normalTop, brandRect.bottom - dockRect.height - 14)
+
+        dock.style.setProperty('--nav-docked-left', `${dockLeft}px`)
+        dock.style.setProperty('--nav-docked-top', `${dockTop}px`)
+      }
+
+      if (docked !== shouldDock) {
+        docked = shouldDock
+        setIsContactDocked(shouldDock)
+      }
+
+      // ScrollSmoother keeps easing after the native scroll event. Follow that
+      // short settling period so the dock stays visually locked to the card.
+      if (performance.now() < trackUntil) {
+        frameId = window.requestAnimationFrame(updateDock)
+      }
+    }
+
+    const scheduleUpdate = () => {
+      trackUntil = performance.now() + 1600
+      if (!frameId) frameId = window.requestAnimationFrame(updateDock)
+    }
+
+    updateDock()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+
+    return () => {
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      window.cancelAnimationFrame(frameId)
+    }
+  }, [])
+
   const go = (id) => {
     setActive(id)
     const el = document.getElementById(id)
@@ -61,7 +138,11 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="navdock" aria-label="Sections">
+    <nav
+      ref={dockRef}
+      className={`navdock ${isContactDocked ? 'is-contact-docked' : ''}`}
+      aria-label="Sections"
+    >
       <button
         className={`nav-logo ${active === home.id ? 'is-active' : ''}`}
         type="button"
