@@ -23,7 +23,7 @@ const rows = [
   [
     { src: `${base}/v1782222984/Artboard_10_1_zrlmls.png`, hover: `${base}/v1782757785/8_puonnu.jpg`, r: 0.663, alt: 'App icons' },
     { src: `${base}/v1782222983/010_2_gwtrfe.png`, hover: `${base}/v1782757787/9_ell7cm.jpg`, r: 0.891, alt: 'Lifestyle pizza' },
-    { src: `${base}/v1782222982/56_1_jftrro.png`, r: 1.011, alt: 'Bevent identity' },
+    { src: `${base}/v1782222982/56_1_jftrro.png`, hover: `${base}/v1783321046/resized_714x706_ratio_4k_ql8ghm.png`, r: 1.011, alt: 'Bevent identity' },
   ],
 ]
 

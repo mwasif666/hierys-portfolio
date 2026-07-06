@@ -1,88 +1,93 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ScrollSmoother } from 'gsap/ScrollSmoother'
-import Navbar from './components/Navbar/Navbar'
-import Foundation from './components/Foundation/Foundation'
-import Portfolio from './components/Portfolio/Portfolio'
-import ServicesGrid from './components/ServicesGrid/ServicesGrid'
-import Process from './components/Process/Process'
-import Trusted from './components/Trusted/Trusted'
-import OneTeam from './components/OneTeam/OneTeam'
-import FeelsLike from './components/FeelsLike/FeelsLike'
-import Footer from './components/Footer/Footer'
-import ImageWithSkeleton from './components/ImageWithSkeleton/ImageWithSkeleton'
-import WeaveSpinner from './components/WeaveSpinner/WeaveSpinner'
-import './App.css'
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import Navbar from "./components/Navbar/Navbar";
+import Foundation from "./components/Foundation/Foundation";
+import Portfolio from "./components/Portfolio/Portfolio";
+import ServicesGrid from "./components/ServicesGrid/ServicesGrid";
+import Process from "./components/Process/Process";
+import Trusted from "./components/Trusted/Trusted";
+import OneTeam from "./components/OneTeam/OneTeam";
+import FeelsLike from "./components/FeelsLike/FeelsLike";
+import Footer from "./components/Footer/Footer";
+import ImageWithSkeleton from "./components/ImageWithSkeleton/ImageWithSkeleton";
+import CrystalLoader from "./components/CrystalLoader/CrystalLoader";
+import "./App.css";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const featuredProjectImage =
-  'https://res.cloudinary.com/djyb4mzzk/image/upload/v1778845884/14_1_efw5gd.png'
+  "https://res.cloudinary.com/djyb4mzzk/image/upload/v1778845884/14_1_efw5gd.png";
 
-function CountUpStat({ value, suffix = '+', duration = 1400 }) {
-  const ref = useRef(null)
-  const hasRunRef = useRef(false)
-  const [count, setCount] = useState(0)
+function CountUpStat({ value, suffix = "+", duration = 1400 }) {
+  const ref = useRef(null);
+  const hasRunRef = useRef(false);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const node = ref.current
-    if (!node || hasRunRef.current) return
+    const node = ref.current;
+    if (!node || hasRunRef.current) return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-      setCount(value)
-      hasRunRef.current = true
-      return
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      setCount(value);
+      hasRunRef.current = true;
+      return;
     }
 
-    let rafId = 0
+    let rafId = 0;
     const animate = () => {
-      const start = performance.now()
+      const start = performance.now();
       const tick = (now) => {
-        const progress = Math.min((now - start) / duration, 1)
-        const eased = 1 - Math.pow(1 - progress, 3)
-        setCount(Math.round(eased * value))
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.round(eased * value));
 
         if (progress < 1) {
-          rafId = requestAnimationFrame(tick)
+          rafId = requestAnimationFrame(tick);
         }
-      }
+      };
 
-      rafId = requestAnimationFrame(tick)
-    }
+      rafId = requestAnimationFrame(tick);
+    };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return
-        hasRunRef.current = true
-        animate()
-        observer.disconnect()
+        if (!entry.isIntersecting) return;
+        hasRunRef.current = true;
+        animate();
+        observer.disconnect();
       },
       { threshold: 0.35 },
-    )
+    );
 
-    observer.observe(node)
+    observer.observe(node);
 
     return () => {
-      observer.disconnect()
-      cancelAnimationFrame(rafId)
-    }
-  }, [duration, value])
+      observer.disconnect();
+      cancelAnimationFrame(rafId);
+    };
+  }, [duration, value]);
 
   return (
     <span ref={ref}>
       {count}
       {suffix}
     </span>
-  )
+  );
 }
 
 function SiteLoader({ isReady }) {
   return (
-    <div className={`site-loader ${isReady ? 'site-loader--hidden' : ''}`} aria-hidden={isReady}>
+    <div
+      className={`site-loader ${isReady ? "site-loader--hidden" : ""}`}
+      aria-hidden={isReady}
+    >
       <div className="site-loader__panel">
-        <WeaveSpinner />
+        <CrystalLoader />
         <div className="site-loader__copy">
           <span className="site-loader__brand">Hierys</span>
           <span className="site-loader__text">Building your experience</span>
@@ -90,67 +95,71 @@ function SiteLoader({ isReady }) {
         <div className="site-loader__bar" />
       </div>
     </div>
-  )
+  );
 }
 
 function App() {
-  const [siteReady, setSiteReady] = useState(false)
+  const [siteReady, setSiteReady] = useState(false);
 
   useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+      return undefined;
 
     const smoother = ScrollSmoother.create({
-      wrapper: '#smooth-wrapper',
-      content: '#smooth-content',
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
       smooth: 1.15,
       smoothTouch: 0.08,
       effects: true,
-    })
+    });
 
     const handleAnchorClick = (event) => {
-      const link = event.target.closest('a[href^="#"]')
-      if (!link) return
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
 
-      const hash = link.getAttribute('href')
-      const target = hash && hash !== '#' ? document.querySelector(hash) : null
-      if (!target) return
+      const hash = link.getAttribute("href");
+      const target = hash && hash !== "#" ? document.querySelector(hash) : null;
+      if (!target) return;
 
-      event.preventDefault()
-      smoother.scrollTo(target, true, 'top top')
-      window.history.pushState(null, '', hash)
-    }
+      event.preventDefault();
+      smoother.scrollTo(target, true, "top top");
+      window.history.pushState(null, "", hash);
+    };
 
-    const refresh = () => ScrollTrigger.refresh()
-    document.addEventListener('click', handleAnchorClick)
-    window.addEventListener('load', refresh)
+    const refresh = () => ScrollTrigger.refresh();
+    document.addEventListener("click", handleAnchorClick);
+    window.addEventListener("load", refresh);
 
     return () => {
-      document.removeEventListener('click', handleAnchorClick)
-      window.removeEventListener('load', refresh)
-      smoother.kill()
-    }
-  }, [])
+      document.removeEventListener("click", handleAnchorClick);
+      window.removeEventListener("load", refresh);
+      smoother.kill();
+    };
+  }, []);
 
   useEffect(() => {
-    const startedAt = performance.now()
-    let timeoutId = 0
+    const startedAt = performance.now();
+    let timeoutId = 0;
 
     const finishLoading = () => {
-      const remainingDelay = Math.max(0, 4000 - (performance.now() - startedAt))
-      timeoutId = window.setTimeout(() => setSiteReady(true), remainingDelay)
-    }
+      const remainingDelay = Math.max(
+        0,
+        4000 - (performance.now() - startedAt),
+      );
+      timeoutId = window.setTimeout(() => setSiteReady(true), remainingDelay);
+    };
 
-    if (document.readyState === 'complete') {
-      finishLoading()
+    if (document.readyState === "complete") {
+      finishLoading();
     } else {
-      window.addEventListener('load', finishLoading, { once: true })
+      window.addEventListener("load", finishLoading, { once: true });
     }
 
     return () => {
-      window.removeEventListener('load', finishLoading)
-      window.clearTimeout(timeoutId)
-    }
-  }, [])
+      window.removeEventListener("load", finishLoading);
+      window.clearTimeout(timeoutId);
+    };
+  }, []);
 
   return (
     <main className="site-shell">
@@ -159,59 +168,72 @@ function App() {
         <div id="smooth-content">
           <section id="home" className="page">
             <div className="banner-grid">
-          {/* ── Left lime card ── */}
-          <article className="card card--lime left">
-            <a className="brand" href="#home" aria-label="Hierys home">
-              <img className="brand-logo" src="/hierys-logo.png" alt="Hierys" />
-            </a>
+              {/* ── Left lime card ── */}
+              <article className="card card--lime left">
+                <a className="brand" href="#home" aria-label="Hierys home">
+                  <img
+                    className="brand-logo"
+                    src="/hierys-logo.png"
+                    alt="Hierys"
+                  />
+                </a>
 
-            <div className="left-foot">
-              <h1 className="headline">
-                <span className="italic-accent">Build.</span>
-                <span className="headline-bold">Position.</span>
-                <span className="italic-accent">Grow.</span>
-              </h1>
-              <p className="lede">
-                We are a full-service digital agency with a global team.
-                Branding, marketing, design, web development, SEO, and content;
-                built as one connected system, delivered by one partner.
-              </p>
-            </div>
-          </article>
+                <div className="left-foot">
+                  <h1 className="headline">
+                    <span className="italic-accent">Build.</span>
+                    <span className="headline-bold">Position.</span>
+                    <span className="italic-accent">Grow.</span>
+                  </h1>
+                  <p className="lede">
+                    We are a full-service digital agency with a global team.
+                    Branding, marketing, design, web development, SEO, and
+                    content; built as one connected system, delivered by one
+                    partner.
+                  </p>
+                </div>
+              </article>
 
-          {/* ── Blue stat card (80+) ── */}
-          <article className="card card--sky blue">
-            <p className="stat-copy">
-              Brands built with consistent identity and creative direction.
-            </p>
-            <span className="stat-figure italic-accent">
-              <CountUpStat value={80} />
-            </span>
-          </article>
+              {/* ── Blue stat card (80+) ── */}
+              <article className="card card--sky blue">
+                <p className="stat-copy">
+                  Brands built with consistent identity and creative direction.
+                </p>
+                <span className="stat-figure italic-accent">
+                  <CountUpStat value={80} />
+                </span>
+              </article>
 
-          {/* ── Get in touch card ── */}
-          <article className="card card--sky-soft getintouch">
-            <a className="pill-cta" href="#contact">
-              Get in Touch
-            </a>
-          </article>
+              {/* ── Get in touch card ── */}
+              <article className="card card--sky-soft getintouch">
+                <a className="pill-cta" href="#contact">
+                  Get in Touch
+                </a>
+              </article>
 
-          {/* ── Product / featured project card ── */}
-          <article className="card product">
-            <div className="product-art" role="img" aria-label="Featured project">
-              <ImageWithSkeleton src={featuredProjectImage} alt="" loading="eager" />
-            </div>
-          </article>
+              {/* ── Product / featured project card ── */}
+              <article className="card product">
+                <div
+                  className="product-art"
+                  role="img"
+                  aria-label="Featured project"
+                >
+                  <ImageWithSkeleton
+                    src={featuredProjectImage}
+                    alt=""
+                    loading="eager"
+                  />
+                </div>
+              </article>
 
-          {/* ── Projects stat card (500+) ── */}
-          <article className="card card--sky-soft projects">
-            <p className="stat-copy">
-              Projects delivered across brand, website, content, and growth.
-            </p>
-            <span className="stat-figure italic-accent">
-              <CountUpStat value={500} />
-            </span>
-          </article>
+              {/* ── Projects stat card (500+) ── */}
+              <article className="card card--sky-soft projects">
+                <p className="stat-copy">
+                  Projects delivered across brand, website, content, and growth.
+                </p>
+                <span className="stat-figure italic-accent">
+                  <CountUpStat value={500} />
+                </span>
+              </article>
             </div>
           </section>
 
@@ -228,7 +250,7 @@ function App() {
 
       <Navbar />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

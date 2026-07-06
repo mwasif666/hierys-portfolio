@@ -131,7 +131,7 @@
     top: calc(100dvh - 70px);
     gap: 4px;
     padding: 6px;
-    width: min(360px, calc(100vw - 24px));
+    width: min(300px, calc(100vw - 48px));
     max-width: none;
   }
 

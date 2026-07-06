@@ -147,6 +147,8 @@
   .proc-heading {
     margin: 40px 0 32px;
     padding-inline: 22px;
+    font-size: clamp(28px, 7vw, 36px);
+    letter-spacing: -0.5px;
   }
 }
 @media (max-width: 460px) {
