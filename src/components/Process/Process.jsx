@@ -44,7 +44,7 @@ export default function Process() {
       {/* ── Marquee ── */}
       <div className="proc-marquee" aria-hidden="true">
         <div className="proc-track">
-          {[...pills, ...pills].map((pill, i) => (
+          {[...pills, ...pills, ...pills, ...pills, ...pills, ...pills].map((pill, i) => (
             <span
               className={`proc-pill ${pill.accent ? 'proc-pill--accent' : ''}`}
               key={`${pill.label}-${i}`}

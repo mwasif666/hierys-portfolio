@@ -118,12 +118,7 @@
   font-size: 16px;
   font-weight: 600;
   box-shadow: 0 10px 24px rgba(7, 29, 50, 0.18);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.toolkit-more:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(7, 29, 50, 0.26);
+  cursor: default;
 }
 
 @media (prefers-reduced-motion: reduce) {

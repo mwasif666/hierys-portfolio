@@ -68,9 +68,7 @@ export default function Toolkit() {
         ))}
       </div>
 
-      <a className="toolkit-more" href="#contact">
-        And Many More
-      </a>
+      <span className="toolkit-more">And Many More</span>
     </section>
   )
 }

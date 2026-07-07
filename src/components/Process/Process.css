@@ -28,7 +28,7 @@
   gap: 14px;
   width: max-content;
   padding-inline: 7px;
-  animation: proc-scroll 32s linear infinite;
+  animation: proc-scroll 96s linear infinite;
 }
 .proc-marquee:hover .proc-track {
   animation-play-state: paused;
