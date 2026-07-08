@@ -229,7 +229,7 @@
 /* ── Row 3: Brand + email ── */
 .foot-bottom {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.82fr) minmax(340px, 0.93fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.82fr) minmax(0, 0.93fr);
   gap: var(--grid-gap);
 }
 .foot-brand {
@@ -252,6 +252,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-width: 0;
   min-height: 250px;
   padding: 34px 34px;
   background: #f9ffbd;
@@ -305,9 +306,12 @@
 .foot-email-addr {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(28px, 2.8vw, 32px);
-  letter-spacing: -1.2px;
-  text-transform: uppercase;
+  font-size: clamp(22px, 2.45vw, 32px);
+  line-height: 1.05;
+  letter-spacing: -0.8px;
+  text-transform: lowercase;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   color: var(--ink);
 }
 
@@ -379,6 +383,10 @@
     grid-row: auto;
     min-height: 180px;
     justify-content: center;
+  }
+  .foot-email {
+    min-height: auto;
+    padding: 26px 20px;
   }
 }
 

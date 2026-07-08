@@ -149,7 +149,7 @@
 
 .feels-stage {
   --bc-scale: 1;
-  height: calc(360px * var(--bc-scale));
+  height: calc(290px * var(--bc-scale));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,6 +159,44 @@
 
 .feels-stage > div {
   transform: scale(var(--bc-scale));
+}
+
+.feels-bounce .bc-card {
+  width: 192px;
+  height: 236px;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.feels-bounce .bc-card--img {
+  border: 0;
+}
+
+.feels-bounce .bc-stat {
+  padding: 20px 18px 18px;
+}
+
+.feels-bounce .bc-stat-top {
+  gap: 0;
+}
+
+.feels-bounce .bc-value {
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: -2.5px;
+}
+
+.feels-bounce .bc-label {
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.feels-bounce .bc-foot {
+  max-width: 14ch;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: -0.4px;
 }
 
 @keyframes testimonial-scroll {

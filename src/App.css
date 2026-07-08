@@ -213,27 +213,28 @@
 }
 
 .headline .italic-accent {
-  font-size: clamp(34px, 4.1vw, 56px);
+  font-size: clamp(42px, 5.2vw, 74px);
   letter-spacing: 0;
 }
 
 .headline-bold {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(42px, 5.1vw, 74px);
+  font-size: clamp(56px, 6.7vw, 96px);
   letter-spacing: 0;
 }
 
 .lede {
-  max-width: 36ch;
-  font-size: clamp(8px, 0.86vw, 12px);
+  max-width: 34ch;
+  font-size: clamp(8px, 0.78vw, 11px);
   line-height: 1.35;
   color: var(--muted-ink);
 }
 
 @media (min-width: 1024px) {
   .lede {
-    font-size: 22px;
+    font-size: clamp(15px, 1.35vw, 18px);
+    line-height: 1.28;
   }
 }
 

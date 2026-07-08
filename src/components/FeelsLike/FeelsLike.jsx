@@ -21,11 +21,11 @@ const cards = [
 ]
 
 const transformStyles = [
-  'rotate(-3deg) translate(-340px)',
-  'rotate(2deg) translate(-170px)',
+  'rotate(-3deg) translate(-330px)',
+  'rotate(2deg) translate(-165px)',
   'rotate(-2deg) translate(0px)',
-  'rotate(3deg) translate(170px)',
-  'rotate(-4deg) translate(340px)',
+  'rotate(3deg) translate(165px)',
+  'rotate(-4deg) translate(330px)',
 ]
 
 function TestimonialCard({ item }) {
@@ -83,10 +83,11 @@ export default function FeelsLike() {
 
         <div className="feels-stage">
           <BounceCards
+            className="feels-bounce"
             cards={cards}
             transformStyles={transformStyles}
-            containerWidth={980}
-            containerHeight={360}
+            containerWidth={820}
+            containerHeight={290}
             animationDelay={0.4}
             animationStagger={0.1}
             easeType="elastic.out(1, 0.6)"
