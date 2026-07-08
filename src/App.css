@@ -231,6 +231,12 @@
   color: var(--muted-ink);
 }
 
+@media (min-width: 1024px) {
+  .lede {
+    font-size: 22px;
+  }
+}
+
 .stat-copy {
   max-width: 12ch;
   font-family: var(--font-body); /* Geist (Figma) */
@@ -270,7 +276,7 @@
   line-height: 1.05;
   letter-spacing: 0;
   padding: clamp(10px, 1vw, 13px) clamp(14px, 1.2vw, 16px);
-  border-radius: 7px;
+  border-radius: 4px;
   transition: transform 0.18s ease;
 }
 

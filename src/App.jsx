@@ -18,7 +18,7 @@ import "./App.css";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const featuredProjectImage =
-  "https://res.cloudinary.com/djyb4mzzk/image/upload/v1778845884/14_1_efw5gd.png";
+  "https://res.cloudinary.com/djyb4mzzk/image/upload/v1783497866/9_1_gbetoo.png";
 
 function CountUpStat({ value, suffix = "+", duration = 1400 }) {
   const ref = useRef(null);

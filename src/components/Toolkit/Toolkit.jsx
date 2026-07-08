@@ -12,14 +12,13 @@ const skills = [
   'Video Production',
 ]
 
-const si = (slug) => `https://cdn.simpleicons.org/${slug}`
 const cloud = (path) =>
   `https://res.cloudinary.com/djyb4mzzk/image/upload/h_250,fl_preserve_transparency/${path}.jpg?_s=public-apps`
 
 const tools = [
   { name: 'Figma', src: cloud('v1782763069/Group_191_tgjozc'), className: 'figma' },
   { name: 'Excalidraw', src: cloud('v1782763084/Group_236_jea2ea'), className: 'excalidraw' },
-  { name: 'DaVinci Resolve', src: si('davinciresolve/ffffff'), className: 'davinci' },
+  { name: 'DaVinci Resolve', src: 'https://res.cloudinary.com/djyb4mzzk/image/upload/v1783499710/image_44_1_h3oloy.svg', className: 'davinci' },
   { name: 'Gemini', src: cloud('v1782763083/Group_211_sorvhg'), className: 'gemini' },
   { name: 'Webflow', src: cloud('v1782763071/Group_205_ttflv4'), className: 'webflow' },
   { name: 'After Effects', src: cloud('v1782763069/Group_193_crw0lb'), className: 'after-effects' },

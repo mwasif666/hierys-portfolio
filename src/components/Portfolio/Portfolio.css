@@ -40,7 +40,7 @@
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.tile:hover .tile-hover {
+.tile-hover.is-active {
   opacity: 1;
 }
 

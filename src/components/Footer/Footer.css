@@ -142,50 +142,40 @@
   border: 0;
   padding: 13px 26px;
   background: var(--ink);
-  border-radius: 999px;
+  border-radius: 4px;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(14px, 1.25vw, 16px);
   letter-spacing: -0.2px;
   color: var(--palette-white);
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(7, 29, 50, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
 }
 .foot-appt:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(7, 29, 50, 0.28);
 }
-.foot-linkedin {
-  display: inline-flex;
-  align-self: flex-start;
+.foot-li {
+  display: flex;
   align-items: center;
   gap: 9px;
-  flex: 0 0 auto;
-  margin-top: 14px;
-  padding: 11px 20px 11px 16px;
-  border-radius: 999px;
-  border: 1.6px solid rgba(7, 29, 50, 0.22);
-  background: transparent;
-  color: var(--ink);
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(14px, 1.25vw, 16px);
-  letter-spacing: -0.2px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
-    color 0.2s ease, border-color 0.2s ease;
+  font-weight: 500;
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.25;
+  color: rgba(7, 29, 50, 0.58);
+  word-break: break-word;
 }
-.foot-linkedin svg {
-  width: 19px;
-  height: 19px;
+.foot-li svg {
   flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
 }
-.foot-linkedin:hover {
-  transform: translateY(-2px);
-  background: #0a66c2;
-  border-color: #0a66c2;
-  color: var(--palette-white);
-  box-shadow: 0 12px 26px rgba(10, 102, 194, 0.32);
+.foot-li span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.foot-li:hover {
+  color: var(--ink);
 }
 
 .calendly-modal {
@@ -292,26 +282,20 @@
 .foot-social {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 22px;
 }
 .foot-social-icon {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--palette-white);
-  box-shadow: 0 8px 20px rgba(7, 29, 50, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: var(--ink);
+  transition: transform 0.2s ease;
 }
 .foot-social-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 27px;
+  height: 27px;
 }
 .foot-social-icon:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(7, 29, 50, 0.28);
 }
 .foot-email-label {
   font-family: var(--font-display);
@@ -323,103 +307,53 @@
   font-weight: 600;
   font-size: clamp(28px, 2.8vw, 32px);
   letter-spacing: -1.2px;
+  text-transform: uppercase;
   color: var(--ink);
 }
 
 .foot-website {
-  min-width: 0;
-  min-height: 250px;
-  padding: 24px;
-  border-radius: 10px;
-  background: #f9ffbd;
-}
-.foot-website-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  padding: 30px;
-  border: 1.5px solid rgba(7, 29, 50, 0.82);
+  min-width: 0;
+  min-height: 250px;
+  padding: 34px;
   border-radius: 10px;
+  background: #f9ffbd;
 }
-.foot-website-copy {
-  display: flex;
-  align-items: flex-start;
-  gap: 17px;
-}
-.foot-website-icon {
-  flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.foot-website-title {
+.foot-website-lede {
+  max-width: 26ch;
   font-family: var(--font-display);
-  font-size: clamp(20px, 1.75vw, 24px);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.5px;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.35;
+  letter-spacing: -0.2px;
   color: var(--ink);
 }
-.foot-website-description {
-  max-width: 300px;
-  margin-top: 8px;
-  font-family: var(--font-display);
-  font-size: clamp(15px, 1.25vw, 18px);
-  font-weight: 500;
-  line-height: 1.4;
-  color: rgba(7, 29, 50, 0.6);
-}
-.foot-website-link {
+.foot-website-visit {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 28px;
-  padding: 13px 18px;
-  border: 1.5px solid rgba(7, 29, 50, 0.82);
-  border-radius: 999px;
-  color: var(--ink);
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 30px;
 }
-.foot-website-link:hover {
-  transform: translateY(-2px);
-  background: var(--ink);
-  color: var(--palette-white);
+.foot-website-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(15px, 1.3vw, 18px);
+  color: rgba(7, 29, 50, 0.56);
 }
 .foot-website-url {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
+  align-self: flex-start;
   font-family: var(--font-display);
-  font-size: clamp(15px, 1.25vw, 18px);
-  font-weight: 600;
-  white-space: nowrap;
+  font-weight: 700;
+  font-size: clamp(22px, 2vw, 26px);
+  letter-spacing: -0.8px;
+  color: var(--ink);
+  transition: transform 0.2s ease;
 }
-.foot-website-url svg {
-  flex: 0 0 auto;
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.foot-website-arrow {
-  flex: 0 0 auto;
-  width: 25px;
-  height: 25px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.foot-website-url:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 @media (max-width: 1180px) {
@@ -446,9 +380,6 @@
     min-height: 180px;
     justify-content: center;
   }
-  .foot-website-card {
-    min-height: 235px;
-  }
 }
 
 @media (max-width: 460px) {
@@ -474,16 +405,6 @@
   }
   .foot-website {
     min-height: auto;
-    padding: 14px;
-  }
-  .foot-website-card {
-    min-height: 220px;
-    padding: 22px 18px;
-  }
-  .foot-website-link {
-    padding-inline: 15px;
-  }
-  .foot-website-url {
-    gap: 8px;
+    padding: 26px 20px;
   }
 }
