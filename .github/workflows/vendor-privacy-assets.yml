@@ -45,4 +45,5 @@ jobs:
             exit 0
           fi
           git commit -m "Vendor external media and fonts locally"
+          git pull --rebase origin fix/privacy-compliance
           git push origin HEAD:fix/privacy-compliance
