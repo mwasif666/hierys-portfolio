@@ -21,7 +21,7 @@ function fail(message) {
 }
 
 const distFiles = await walk(distDir)
-const textExtensions = new Set(['.html', '.js', '.css', '.svg', '.json', '.txt', '.xml'])
+const textExtensions = new Set(['.html', '.js', '.css', '.svg', '.txt', '.xml'])
 let distText = ''
 for (const file of distFiles) {
   if (!textExtensions.has(path.extname(file).toLowerCase())) continue
