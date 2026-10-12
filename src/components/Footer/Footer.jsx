@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { createPortal } from "react-dom";
 import ImageWithSkeleton from "../ImageWithSkeleton/ImageWithSkeleton";
 import "./Footer.css";
 
@@ -27,12 +25,8 @@ const team = [
 ];
 
 export default function Footer() {
-  const [calendlyUrl, setCalendlyUrl] = useState("");
-  const closeCalendly = () => setCalendlyUrl("");
-
   return (
     <footer id="contact" className="footer">
-      {/* ── Row 1: Get in touch ── */}
       <a className="foot-cta" href="mailto:hello@hierys.com">
         <span className="foot-cta-text">GET IN TOUCH</span>
         <svg className="foot-cta-arrow" viewBox="0 0 32 32" aria-hidden="true">
@@ -47,7 +41,6 @@ export default function Footer() {
         </svg>
       </a>
 
-      {/* ── Row 2: Team ── */}
       <div className="foot-team">
         {team.map((person) => (
           <article
@@ -94,20 +87,21 @@ export default function Footer() {
                 </a>
               </div>
               <div className="foot-actions">
-                <button
+                <a
                   className="foot-appt"
-                  type="button"
-                  onClick={() => setCalendlyUrl(person.calendly)}
+                  href={person.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Schedule an appointment with ${person.name} on Calendly`}
                 >
                   Schedule Appointment
-                </button>
+                </a>
               </div>
             </div>
           </article>
         ))}
       </div>
 
-      {/* ── Row 3: Brand + email ── */}
       <div className="foot-bottom">
         <div className="foot-brand">
           <span className="foot-wordmark">Hierys.</span>
@@ -121,74 +115,26 @@ export default function Footer() {
           <div className="foot-follow">
             <h2 className="foot-follow-title">Follow us at</h2>
             <div className="foot-social">
-              <a
-                className="foot-social-icon"
-                href="https://www.instagram.com/wearehierys"
-                aria-label="Instagram"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.9"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
+              <a className="foot-social-icon" href="https://www.instagram.com/wearehierys" aria-label="Instagram" rel="noreferrer" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" />
                   <circle cx="12" cy="12" r="4" />
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
               </a>
-              <a
-                className="foot-social-icon"
-                href="https://www.facebook.com/wearehierys"
-                aria-label="Facebook"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.9"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
+              <a className="foot-social-icon" href="https://www.facebook.com/wearehierys" aria-label="Facebook" rel="noreferrer" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                 </svg>
               </a>
-              <a
-                className="foot-social-icon"
-                href="https://www.pinterest.com/wearehierys"
-                aria-label="Pinterest"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.9"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
+              <a className="foot-social-icon" href="https://www.pinterest.com/wearehierys" aria-label="Pinterest" rel="noreferrer" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="10" />
                   <path d="M10.2 20.5c.3-1.2.8-3.5 1.1-4.9" />
                   <path d="M11.3 15.6c-.5-.9-.4-2.3.1-3.4.5-1.1 1.5-1.8 2.5-1.5 1.1.3 1.3 1.5.9 2.8-.4 1.5-1.2 3.2.7 3.6 1.8.4 3.5-1.5 3.5-4.1 0-3.4-2.8-6-6.6-6-4.1 0-6.9 2.8-6.9 6.2 0 1.5.6 2.8 1.5 3.5" />
                 </svg>
               </a>
-              <a
-                className="foot-social-icon"
-                href="https://www.behance.net/wearehierys"
-                aria-label="Behance"
-                rel="noreferrer"
-                target="_blank"
-              >
+              <a className="foot-social-icon" href="https://www.behance.net/wearehierys" aria-label="Behance" rel="noreferrer" target="_blank">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M2 5.5h7.1c1.6 0 2.8.4 3.6 1.1.7.6 1 1.5 1 2.6 0 1.4-.7 2.4-2 3 1.8.5 2.7 1.7 2.7 3.5 0 1.3-.4 2.3-1.3 3-.9.8-2.2 1.2-3.8 1.2H2V5.5Zm6.7 5.7c.7 0 1.2-.1 1.5-.4.4-.3.5-.7.5-1.2s-.2-.9-.5-1.1c-.3-.3-.8-.4-1.5-.4H5.2v3.1h3.5Zm.5 6.2c.7 0 1.3-.2 1.6-.5.4-.3.6-.7.6-1.3 0-.5-.2-.9-.6-1.2-.4-.3-1-.4-1.8-.4H5.2v3.4h4Z" />
                   <path d="M16.5 7.3h5V5.9h-5v1.4Zm2.7 12.9c1 0 1.9-.2 2.6-.7.7-.4 1.3-1 1.8-1.8l-2.1-1.2c-.6.8-1.3 1.2-2.3 1.2-.7 0-1.2-.2-1.7-.6-.5-.4-.7-.9-.8-1.6H24c0-.2.1-.6.1-.9 0-1.7-.5-3-1.4-4-.9-1-2.1-1.5-3.7-1.5-1.5 0-2.8.5-3.8 1.6-1 1-1.5 2.4-1.5 4s.5 3 1.5 4c1 1 2.3 1.5 4 1.5Zm-2.6-6.6c.1-.7.4-1.2.8-1.6.4-.4.9-.6 1.6-.6s1.2.2 1.6.6c.4.4.6.9.7 1.6h-4.7Z" />
@@ -199,55 +145,19 @@ export default function Footer() {
         </div>
 
         <div className="foot-website">
-          <p className="foot-website-lede">
-            Explore our work, case studies and services.
-          </p>
+          <p className="foot-website-lede">Explore our work, case studies and services.</p>
           <div className="foot-website-visit">
             <span className="foot-website-label">Visit our website</span>
-            <a
-              className="foot-website-url"
-              href="https://www.hierys.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit the Hierys website"
-            >
+            <a className="foot-website-url" href="https://www.hierys.com" target="_blank" rel="noopener noreferrer" aria-label="Visit the Hierys website">
               www.hierys.com
             </a>
+            <nav className="foot-legal" aria-label="Legal information">
+              <a href="https://hierys.com/privacy-policy">Privacy Policy</a>
+              <a href="https://hierys.com/imprint">Imprint</a>
+            </nav>
           </div>
         </div>
       </div>
-
-      {calendlyUrl &&
-        createPortal(
-          <div
-            className="calendly-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Schedule appointment"
-          >
-            <button
-              className="calendly-modal__backdrop"
-              type="button"
-              onClick={closeCalendly}
-              aria-label="Close"
-            />
-            <div className="calendly-modal__panel">
-              <button
-                className="calendly-modal__close"
-                type="button"
-                onClick={closeCalendly}
-              >
-                Close
-              </button>
-              <iframe
-                className="calendly-modal__frame"
-                src={`${calendlyUrl}?hide_gdpr_banner=1`}
-                title="Calendly scheduling"
-              />
-            </div>
-          </div>,
-          document.body,
-        )}
     </footer>
   );
 }
